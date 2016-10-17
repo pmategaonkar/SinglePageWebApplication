@@ -22,11 +22,12 @@
 
         vm.search = function () {
             vm.loadingData = true;
-            if (vm.searchTerm = "") {
+            if (vm.searchTerm == "") {
                 vm.emptyInput = true;
                 vm.loadingData = false;
             }
             else {
+                vm.emptyInput = false;
                 var promise = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
                 promise.then(function (items) {
                     vm.loadingData = false;
@@ -52,7 +53,7 @@
                 var filteredList = filterItems(searchItem);
                 defer.resolve(filteredList);
             });
-            
+
             return defer.promise;
         }
 
@@ -68,7 +69,7 @@
 
         function filterItems(searchItem) {
             return allItems.filter(function (eachItem) {
-                return eachItem.description.indexOf(searchItem) >= 0;
+                return eachItem.description.toLowerCase().indexOf(searchItem.toLowerCase()) >= 0;
             });
         }
     }

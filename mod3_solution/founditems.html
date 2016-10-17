@@ -1,8 +1,11 @@
 ﻿<div>
-    <table class="table">
+    <table class="table table-striped">
         <tr ng-repeat="eachItem in list.foundItems track by eachItem.id">
             <td>
                 {{eachItem.short_name}}
+            </td>
+            <td>
+                {{eachItem.name}}
             </td>
             <td>
                 {{eachItem.description}}
