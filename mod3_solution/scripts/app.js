@@ -32,6 +32,9 @@
                 promise.then(function (items) {
                     vm.loadingData = false;
                     vm.found = items;
+                    if (items.length == 0) {
+                        vm.emptyInput = true;
+                    }
                 }, function (err) {
                     vm.loadingData = false;
                 });
