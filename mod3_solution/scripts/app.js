@@ -14,6 +14,7 @@
         vm.searchTerm = '';
         vm.found = [];
         vm.loadingData = false;
+        vm.emptyInput = false;
 
         vm.removeItem = function (index) {
             vm.found.splice(index, 1);
@@ -21,13 +22,19 @@
 
         vm.search = function () {
             vm.loadingData = true;
-            var promise = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
-            promise.then(function (items) {
+            if (vm.searchTerm = "") {
+                vm.emptyInput = true;
                 vm.loadingData = false;
-                vm.found = items;
-            }, function (err) {
-                vm.loadingData = false;
-            });
+            }
+            else {
+                var promise = MenuSearchService.getMatchedMenuItems(vm.searchTerm);
+                promise.then(function (items) {
+                    vm.loadingData = false;
+                    vm.found = items;
+                }, function (err) {
+                    vm.loadingData = false;
+                });
+            }
         }
     }
 
