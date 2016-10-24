@@ -1,0 +1,12 @@
+﻿<div>
+    <div style="width:50%;float:left;">
+        <ul ng-repeat="eachItem in $ctrl.items">
+            <li>
+                <a href="#" ui-sref="items.detail({itemId: eachItem.id})">{{eachItem.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <div style="width:50%;float:left;">
+        <ui-view></ui-view>
+    </div>
+</div>
